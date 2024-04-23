@@ -137,18 +137,12 @@ var GameAnalyticsDefold = {
     js_getRemoteConfigsValueAsString: function(key)
     {
         var returnStr = gameanalytics.GameAnalytics.getRemoteConfigsValueAsString(UTF8ToString(key));
-        var bufferSize = lengthBytesUTF8(returnStr) + 1;
-        var buffer = _malloc(bufferSize);
-        stringToUTF8(returnStr, buffer, bufferSize);
-        return buffer;
+        return stringToUTF8OnStack(returnStr);
     },
     js_getRemoteConfigsValueAsStringWithDefaultValue: function(key, defaultValue)
     {
         var returnStr = gameanalytics.GameAnalytics.getRemoteConfigsValueAsString(UTF8ToString(key), UTF8ToString(defaultValue));
-        var bufferSize = lengthBytesUTF8(returnStr) + 1;
-        var buffer = _malloc(bufferSize);
-        stringToUTF8(returnStr, buffer, bufferSize);
-        return buffer;
+        return stringToUTF8OnStack(returnStr);
     },
     js_isRemoteConfigsReady: function()
     {
@@ -157,12 +151,9 @@ var GameAnalyticsDefold = {
     js_getRemoteConfigsContentAsString: function()
     {
         var returnStr = gameanalytics.GameAnalytics.getRemoteConfigsContentAsString();
-        var bufferSize = lengthBytesUTF8(returnStr) + 1;
-        var buffer = _malloc(bufferSize);
-        stringToUTF8(returnStr, buffer, bufferSize);
-        return buffer;
+        return stringToUTF8OnStack(returnStr);
     }
 }
 
 autoAddDeps(GameAnalyticsDefold, '$listener');
-mergeInto(LibraryManager.library, GameAnalyticsDefold);
+addToLibrary(GameAnalyticsDefold);

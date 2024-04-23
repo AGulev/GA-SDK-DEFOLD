@@ -6,7 +6,7 @@
 #elif defined(DM_PLATFORM_HTML5)
 #include "html5/GameAnalytics.h"
 #include <emscripten.h>
-#elif defined(DM_PLATFORM_LINUX) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS)
+#elif defined(DM_PLATFORM_LINUX) ||  defined(DM_PLATFORM_WINDOWS)
 #include "cpp/GameAnalytics.h"
 #endif
 #include <string.h>
@@ -18,9 +18,9 @@ namespace gameanalytics
 {
     namespace defold
     {
-#if defined(DM_PLATFORM_HTML5) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#if defined(DM_PLATFORM_HTML5) ||  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
         dmScript::LuaCallbackInfo* _remote_configs_listener;
-#if defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#if  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
         class DefoldOnRemoteConfigsListener : public IRemoteConfigsListener
         {
         public:
@@ -102,7 +102,7 @@ namespace gameanalytics
                 dmSnPrintf(arrayString, sizeof(arrayString), "[]");
             }
             js_configureAvailableCustomDimensions01(arrayString);
-#elif defined(DM_PLATFORM_LINUX) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS)
+#elif defined(DM_PLATFORM_LINUX) ||  defined(DM_PLATFORM_WINDOWS)
             char listArray[strlen(list) + 1];
             dmSnPrintf(listArray, sizeof(listArray), "%s", list);
             size_t totalSize = strlen(listArray) + strlen(listArray) * 2 + 3;
@@ -165,7 +165,7 @@ namespace gameanalytics
                 dmSnPrintf(arrayString, sizeof(arrayString), "[]");
             }
             js_configureAvailableCustomDimensions02(arrayString);
-#elif defined(DM_PLATFORM_LINUX) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS)
+#elif defined(DM_PLATFORM_LINUX) ||  defined(DM_PLATFORM_WINDOWS)
             char listArray[strlen(list) + 1];
             dmSnPrintf(listArray, sizeof(listArray), "%s", list);
             size_t totalSize = strlen(listArray) + strlen(listArray) * 2 + 3;
@@ -228,7 +228,7 @@ namespace gameanalytics
                 dmSnPrintf(arrayString, sizeof(arrayString), "[]");
             }
             js_configureAvailableCustomDimensions03(arrayString);
-#elif defined(DM_PLATFORM_LINUX) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS)
+#elif defined(DM_PLATFORM_LINUX) ||  defined(DM_PLATFORM_WINDOWS)
             char listArray[strlen(list) + 1];
             dmSnPrintf(listArray, sizeof(listArray), "%s", list);
             size_t totalSize = strlen(listArray) + strlen(listArray) * 2 + 3;
@@ -291,7 +291,7 @@ namespace gameanalytics
                 dmSnPrintf(arrayString, sizeof(arrayString), "[]");
             }
             js_configureAvailableResourceCurrencies(arrayString);
-#elif defined(DM_PLATFORM_LINUX) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS)
+#elif defined(DM_PLATFORM_LINUX) ||  defined(DM_PLATFORM_WINDOWS)
             char listArray[strlen(list) + 1];
             dmSnPrintf(listArray, sizeof(listArray), "%s", list);
             size_t totalSize = strlen(listArray) + strlen(listArray) * 2 + 3;
@@ -354,7 +354,7 @@ namespace gameanalytics
                 dmSnPrintf(arrayString, sizeof(arrayString), "[]");
             }
             js_configureAvailableResourceItemTypes(arrayString);
-#elif defined(DM_PLATFORM_LINUX) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS)
+#elif defined(DM_PLATFORM_LINUX) ||  defined(DM_PLATFORM_WINDOWS)
             char listArray[strlen(list) + 1];
             dmSnPrintf(listArray, sizeof(listArray), "%s", list);
             size_t totalSize = strlen(listArray) + strlen(listArray) * 2 + 3;
@@ -390,7 +390,7 @@ namespace gameanalytics
             jni_configureBuild(build);
 #elif defined(DM_PLATFORM_HTML5)
             js_configureBuild(build);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureBuild(build);
 #endif
         }
@@ -402,7 +402,7 @@ namespace gameanalytics
 #elif defined(DM_PLATFORM_ANDROID)
             jni_configureAutoDetectAppVersion(flag);
 #elif defined(DM_PLATFORM_HTML5)
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
 #endif
         }
 
@@ -414,7 +414,7 @@ namespace gameanalytics
             jni_configureUserId(userId);
 #elif defined(DM_PLATFORM_HTML5)
             js_configureUserId(userId);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureUserId(userId);
 #endif
         }
@@ -427,7 +427,7 @@ namespace gameanalytics
             jni_configureSdkGameEngineVersion(gameEngineSdkVersion);
 #elif defined(DM_PLATFORM_HTML5)
             js_configureSdkGameEngineVersion(gameEngineSdkVersion);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureSdkGameEngineVersion(gameEngineSdkVersion);
 #endif
         }
@@ -440,7 +440,7 @@ namespace gameanalytics
             jni_configureGameEngineVersion(gameEngineVersion);
 #elif defined(DM_PLATFORM_HTML5)
             js_configureGameEngineVersion(gameEngineVersion);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureGameEngineVersion(gameEngineVersion);
 #endif
         }
@@ -450,7 +450,7 @@ namespace gameanalytics
 #if defined(DM_PLATFORM_IOS)
 #elif defined(DM_PLATFORM_ANDROID)
 #elif defined(DM_PLATFORM_HTML5)
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureWritablePath(writablePath);
 #endif
         }
@@ -464,7 +464,7 @@ namespace gameanalytics
             jni_initialize(gameKey, gameSecret);
 #elif defined(DM_PLATFORM_HTML5)
             js_initialize(gameKey, gameSecret);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             auto listener = std::make_shared<DefoldOnRemoteConfigsListener>();
             gameanalytics::GameAnalytics::addRemoteConfigsListener(listener);
             gameanalytics::GameAnalytics::initialize(gameKey, gameSecret);
@@ -496,7 +496,7 @@ namespace gameanalytics
             jni_addBusinessEvent(currency, amount, itemType, itemId, cartType, fields, mergeFields);
 #elif defined(DM_PLATFORM_HTML5)
             js_addBusinessEvent(currency, amount, itemType, itemId, cartType, fields, mergeFields);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addBusinessEvent(currency, amount, itemType, itemId, cartType, fields, mergeFields);
 #endif
         }
@@ -509,7 +509,7 @@ namespace gameanalytics
             jni_addResourceEvent((int)flowType, currency, amount, itemType, itemId, fields, mergeFields);
 #elif defined(DM_PLATFORM_HTML5)
             js_addResourceEvent((int)flowType, currency, amount, itemType, itemId, fields, mergeFields);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addResourceEvent((gameanalytics::EGAResourceFlowType)((int)flowType), currency, amount, itemType, itemId, fields, mergeFields);
 #endif
         }
@@ -522,7 +522,7 @@ namespace gameanalytics
             jni_addProgressionEvent((int)progressionStatus, progression01, progression02, progression03, fields, mergeFields);
 #elif defined(DM_PLATFORM_HTML5)
             js_addProgressionEvent((int)progressionStatus, progression01, progression02, progression03, fields, mergeFields);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03, fields, mergeFields);
 #endif
         }
@@ -535,7 +535,7 @@ namespace gameanalytics
             jni_addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score, fields, mergeFields);
 #elif defined(DM_PLATFORM_HTML5)
             js_addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score, fields, mergeFields);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03, score, fields, mergeFields);
 #endif
         }
@@ -548,7 +548,7 @@ namespace gameanalytics
             jni_addDesignEvent(eventId, fields, mergeFields);
 #elif defined(DM_PLATFORM_HTML5)
             js_addDesignEvent(eventId, fields, mergeFields);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addDesignEvent(eventId, fields, mergeFields);
 #endif
         }
@@ -561,7 +561,7 @@ namespace gameanalytics
             jni_addDesignEventWithValue(eventId, value, fields, mergeFields);
 #elif defined(DM_PLATFORM_HTML5)
             js_addDesignEventWithValue(eventId, value, fields, mergeFields);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addDesignEvent(eventId, value, fields, mergeFields);
 #endif
         }
@@ -574,7 +574,7 @@ namespace gameanalytics
             jni_addErrorEvent((int)severity, message, fields, mergeFields);
 #elif defined(DM_PLATFORM_HTML5)
             js_addErrorEvent((int)severity, message, fields, mergeFields);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addErrorEvent((gameanalytics::EGAErrorSeverity)((int)severity), message, fields, mergeFields);
 #endif
         }
@@ -586,7 +586,7 @@ namespace gameanalytics
 #elif defined(DM_PLATFORM_ANDROID)
             jni_addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, fields, mergeFields);
 #elif defined(DM_PLATFORM_HTML5)
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
 #endif
         }
 
@@ -597,7 +597,7 @@ namespace gameanalytics
 #elif defined(DM_PLATFORM_ANDROID)
             jni_addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, fields, mergeFields);
 #elif defined(DM_PLATFORM_HTML5)
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
 #endif
         }
 
@@ -608,7 +608,7 @@ namespace gameanalytics
 #elif defined(DM_PLATFORM_ANDROID)
             jni_addAdEventWithNoAdReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, fields, mergeFields);
 #elif defined(DM_PLATFORM_HTML5)
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
 #endif
         }
 
@@ -620,7 +620,7 @@ namespace gameanalytics
             jni_setEnabledInfoLog(flag);
 #elif defined(DM_PLATFORM_HTML5)
             js_setEnabledInfoLog(flag);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setEnabledInfoLog(flag);
 #endif
         }
@@ -633,7 +633,7 @@ namespace gameanalytics
             jni_setEnabledVerboseLog(flag);
 #elif defined(DM_PLATFORM_HTML5)
             js_setEnabledVerboseLog(flag);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setEnabledVerboseLog(flag);
 #endif
         }
@@ -646,7 +646,7 @@ namespace gameanalytics
             jni_setEnabledManualSessionHandling(flag);
 #elif defined(DM_PLATFORM_HTML5)
             js_setManualSessionHandling(flag);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setEnabledManualSessionHandling(flag);
 #endif
         }
@@ -659,7 +659,7 @@ namespace gameanalytics
             jni_setEnabledEventSubmission(flag);
 #elif defined(DM_PLATFORM_HTML5)
             js_setEventSubmission(flag);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setEnabledEventSubmission(flag);
 #endif
         }
@@ -672,7 +672,7 @@ namespace gameanalytics
             jni_setEnabledErrorReporting(flag);
 #elif defined(DM_PLATFORM_HTML5)
             // ;
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setEnabledErrorReporting(flag);
 #endif
         }
@@ -685,7 +685,7 @@ namespace gameanalytics
             jni_setCustomDimension01(customDimension);
 #elif defined(DM_PLATFORM_HTML5)
             js_setCustomDimension01(customDimension);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setCustomDimension01(customDimension);
 #endif
         }
@@ -698,7 +698,7 @@ namespace gameanalytics
             jni_setCustomDimension02(customDimension);
 #elif defined(DM_PLATFORM_HTML5)
             js_setCustomDimension02(customDimension);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setCustomDimension02(customDimension);
 #endif
         }
@@ -711,7 +711,7 @@ namespace gameanalytics
             jni_setCustomDimension03(customDimension);
 #elif defined(DM_PLATFORM_HTML5)
             js_setCustomDimension03(customDimension);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setCustomDimension03(customDimension);
 #endif
         }
@@ -724,7 +724,7 @@ namespace gameanalytics
             jni_setGlobalCustomEventFields(customFields);
 #elif defined(DM_PLATFORM_HTML5)
             js_setGlobalCustomEventFields(customFields);
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setGlobalCustomEventFields(customFields);
 #endif
         }
@@ -737,7 +737,7 @@ namespace gameanalytics
             jni_startSession();
 #elif defined(DM_PLATFORM_HTML5)
             js_startSession();
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::startSession();
 #endif
         }
@@ -750,7 +750,7 @@ namespace gameanalytics
             jni_endSession();
 #elif defined(DM_PLATFORM_HTML5)
             js_endSession();
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::endSession();
 #endif
         }
@@ -760,7 +760,7 @@ namespace gameanalytics
 #if defined(DM_PLATFORM_IOS)
 #elif defined(DM_PLATFORM_ANDROID)
 #elif defined(DM_PLATFORM_HTML5)
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::onQuit();
 #endif
         }
@@ -780,7 +780,7 @@ namespace gameanalytics
                 result.push_back(returnValue[i]);
             }
             return result;
-#elif defined(DM_PLATFORM_LINUX) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS)
+#elif defined(DM_PLATFORM_LINUX) ||  defined(DM_PLATFORM_WINDOWS)
             return gameanalytics::GameAnalytics::getRemoteConfigsValueAsString(key, defaultValue);
 #endif
         }
@@ -800,7 +800,7 @@ namespace gameanalytics
                 result.push_back(returnValue[i]);
             }
             return result;
-#elif defined(DM_PLATFORM_LINUX) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS)
+#elif defined(DM_PLATFORM_LINUX) ||  defined(DM_PLATFORM_WINDOWS)
             return gameanalytics::GameAnalytics::getRemoteConfigsValueAsString(key);
 #endif
         }
@@ -813,7 +813,7 @@ namespace gameanalytics
             return jni_isRemoteConfigsReady();
 #elif defined(DM_PLATFORM_HTML5)
             return js_isRemoteConfigsReady();
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             return gameanalytics::GameAnalytics::isRemoteConfigsReady();
 #endif
         }
@@ -826,7 +826,7 @@ namespace gameanalytics
             jni_setRemoteConfigsListener(listener);
 #elif defined(DM_PLATFORM_HTML5)
             _remote_configs_listener = listener;
-#elif defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#elif  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
             _remote_configs_listener = listener;
 #endif
         }
@@ -846,7 +846,7 @@ namespace gameanalytics
                 result.push_back(returnValue[i]);
             }
             return result;
-#elif defined(DM_PLATFORM_LINUX) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS)
+#elif defined(DM_PLATFORM_LINUX) ||  defined(DM_PLATFORM_WINDOWS)
             return gameanalytics::GameAnalytics::getRemoteConfigsContentAsString();
 #endif
         }

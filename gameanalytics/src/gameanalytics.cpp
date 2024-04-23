@@ -6,7 +6,7 @@
 #define DLIB_LOG_DOMAIN LIB_NAME
 #include <dmsdk/sdk.h>
 
-#if defined(DM_PLATFORM_IOS) || defined(DM_PLATFORM_ANDROID) || defined(DM_PLATFORM_HTML5) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#if defined(DM_PLATFORM_IOS) || defined(DM_PLATFORM_ANDROID) || defined(DM_PLATFORM_HTML5) ||  defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
 
 #define LuaTypeName(L, pos) lua_typename(L, lua_type(L, pos))
 #define UTF8IsEqual(utf8str1, utf8str2) (strcmp(utf8str1, utf8str2) == 0)
@@ -43,7 +43,7 @@
 #define KeyOptionsKey "key"
 #define DefaultValueOptionsKey "defaultValue"
 
-#if defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_LINUX)
+#if  defined(DM_PLATFORM_LINUX)
 #include <string.h>
 #include <limits.h>     /* PATH_MAX */
 #include <sys/stat.h>   /* mkdir(2) */
@@ -140,7 +140,7 @@ static int initialize(lua_State* L)
     return 0;
 }
 
-#if defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_LINUX)
+#if  defined(DM_PLATFORM_LINUX)
 int mkdir_p(const char *path)
 {
     const size_t len = strlen(path);
@@ -1433,20 +1433,20 @@ static dmExtension::Result InitializeExtension(dmExtension::Params* params)
     game_key = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.game_key_html5", 0);
     secret_key = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.secret_key_html5", 0);
     build = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.build_html5", 0);
-#elif defined(DM_PLATFORM_OSX)
-    game_key = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.game_key_osx", 0);
-    secret_key = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.secret_key_osx", 0);
-    build = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.build_osx", 0);
-    const char* write_path = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.write_path_osx", 0);
-    if(write_path)
-    {
-        wordexp_t p;
-        wordexp(write_path, &p, 0);
-        dmLogInfo("write_path=%s\n", p.we_wordv[0]);
-        mkdir_p(p.we_wordv[0]);
-        gameanalytics::defold::GameAnalytics::configureWritablePath(p.we_wordv[0]);
-        wordfree(&p);
-    }
+// #elif defined(DM_PLATFORM_OSX)
+//     game_key = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.game_key_osx", 0);
+//     secret_key = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.secret_key_osx", 0);
+//     build = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.build_osx", 0);
+//     const char* write_path = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.write_path_osx", 0);
+//     if(write_path)
+//     {
+//         wordexp_t p;
+//         wordexp(write_path, &p, 0);
+//         dmLogInfo("write_path=%s\n", p.we_wordv[0]);
+//         mkdir_p(p.we_wordv[0]);
+//         gameanalytics::defold::GameAnalytics::configureWritablePath(p.we_wordv[0]);
+//         wordfree(&p);
+//     }
 #elif defined(DM_PLATFORM_WINDOWS)
     game_key = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.game_key_windows", 0);
     secret_key = dmConfigFile::GetString(params->m_ConfigFile, "gameanalytics.secret_key_windows", 0);
